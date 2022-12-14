@@ -21,18 +21,12 @@ document.addEventListener("click", function(e){
     else if(e.target.dataset.hero){
         renderHero(e.target.dataset.hero)
     }
+    else if(e.target.id === "icon"){
+        handleNavClick()
+    }
 })
 
-
-
-//CLEAR START PAGE TO SHOW FULL BLOG
-function clearStart(){
-    document.getElementById("heroImg").classList.add("hidden")
-    document.getElementById("blog-info-hero").classList.add("hidden")
-    document.getElementById("recent").classList.remove("hidden")
-    document.getElementById("about-me").classList.add("hidden")
-    document.getElementById("blog-full").classList.remove("hidden")
-}
+/*****HIDE AND UNHIDE FUNCTIONS*****/
 
 //HIDE ABOUT ME & RECENT HEADING SECTION
 function hideRecentandAbout(){
@@ -55,9 +49,15 @@ function hideFullBlog(){
     document.getElementById("blog-full").classList.add("hidden")
 }
 
-//
+function handleNavClick(){
+    document.getElementById("nav-list").classList.toggle("hidden")
+}
 
-//RENDER HERO SECTION
+/***** */
+
+/*****START PAGE FUNCTIONS*****/
+
+//RENDER SHORT HERO SECTION
 function hero(){
     hideRecentandAbout()
     
@@ -76,56 +76,8 @@ function hero(){
      document.getElementById('hero').innerHTML = header
 }
 
-//RENDER FULL HERO SECTION
-function renderHero(heroId){
-    clearStart()
-    
-    let blogger = ''
-    let paragraphOne = ''
-    let paragraphTwo = ''
-    
-    blogData.forEach(hero => {
-        if (hero.hero){
-        hero.blogSecondSection.forEach(para => {
-            paragraphOne += `<p class="paragraph">${para}</p>`
-        })}
-    })
-
-    blogData.forEach(hero => {
-         if (hero.hero){
-        hero.blogThirdSection.forEach(para => {
-            paragraphTwo += `<p class="paragraph">${para}</p>`
-        })}
-    })
-            
-    blogData.forEach(hero => { 
-        if (hero.hero){
-        blogger += `
-            <div>
-                <h3 class="date-full">${hero.blogDate}</h3>
-                <h2 class="blog-num-full">${hero.blogTitle}</h2>
-                <p class="blog-text-full">${hero.blogFirstSection}</p>
-            </div>
-            <img class="blog-img-full" src=${hero.blogImg}>
-            <h4 class="small-title-full">${hero.blogHeadingOne}</h4>
-            ${paragraphOne}
-            <h4 class="small-title-full">${hero.blogHeadingTwo}</h4>
-            ${paragraphTwo}
-        `
-        }
-        })    
-
-    document.getElementById('blog-full').innerHTML = blogger
-    window.scrollTo(0,0)
-}
-
-
-//RENDER THE START PAGE BLOGS
-function renderBlogList(){
-    hideRecentandAbout()
-    showViewMore()
-    hideFullBlog()
-
+//RENDERS THE BLOG SHORT VERSION
+function blog(){
     let blog = ""
     blogData.forEach(post =>{
         if (post.id <= 3){
@@ -140,10 +92,17 @@ function renderBlogList(){
             </div>
         `
         return blog
-        }
+        } 
     })
     document.getElementById('blogPosts').innerHTML = blog
+}
+//RENDER THE START PAGE BLOGS
+function renderBlogList(){
+    hideRecentandAbout()
+    showViewMore()
+    hideFullBlog()
     hero()
+    blog()
 }
 renderBlogList()
 
@@ -175,15 +134,23 @@ function viewMore(){
 function viewLess(){
     document.getElementById("view-less").classList.add("hidden")
     showViewMore()
-    renderBlogList()
+    blog()
     window.scrollTo(0,0)
 }
 
-//RENDER THE SELECTED BLOG
-function renderBlog(blogId){  
-    
-    clearStart() 
-    
+/*****HOME-PAGE FUNCTIONS*****/
+
+//CLEAR START PAGE TO SHOW FULL BLOG
+function clearStart(){
+    document.getElementById("heroImg").classList.add("hidden")
+    document.getElementById("blog-info-hero").classList.add("hidden")
+    document.getElementById("recent").classList.remove("hidden")
+    document.getElementById("about-me").classList.add("hidden")
+    document.getElementById("blog-full").classList.remove("hidden")
+}
+
+//RENDERS THE FULL BLOG/HERO SECTION
+function fullBlog(blogId){
     let blogger = ''
     let paragraphOne = ''
     let paragraphTwo = ''
@@ -201,8 +168,7 @@ function renderBlog(blogId){
             paragraphTwo += `<p class="paragraph">${para}</p>`
         })}
     })
-   
-            
+               
     blogData.forEach(blog => { 
         if (blog.id == blogId){
         blogger += `
@@ -224,14 +190,30 @@ function renderBlog(blogId){
     window.scrollTo(0,0)
 }
 
+//RENDER FULL HERO SECTION
+function renderHero(blogId){
+    clearStart()
+    fullBlog(blogId)
+}
+
+//RENDER THE SELECTED BLOG
+function renderBlog(blogId){  
+    clearStart() 
+    fullBlog(blogId)
+}
+
+/*****ABOUT ME FUNCTIONS*****/
+
 //RENDER ABOUT ME PAGE
 function about(){
     hideViewMore()
     hideFullBlog()
+    blog()
     document.getElementById("heroImg").classList.add("hidden")
     document.getElementById("blog-info-hero").classList.add("hidden")
     document.getElementById("about-me").classList.remove("hidden")
     document.getElementById("recent").classList.remove("hidden")
+    document.getElementById("view-less").classList.add("hidden")
     
     
     let about = ''
@@ -268,4 +250,3 @@ function about(){
     })
     document.getElementById('about-me').innerHTML = about   
 }
-

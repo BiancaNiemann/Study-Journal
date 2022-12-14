@@ -24,6 +24,19 @@ body {
         
 }
 
+/*FONT SETUP*/
+h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    width: 10rem;
+    
+}
+
+h1, .blog-num, .intro, .footer-learn{
+    font-weight: 700;
+}
+
+
 /*NAV BAR*/
 .header{
     height: 60px;
@@ -51,15 +64,6 @@ body {
     grid-column: navr;
 }
 
-h1{
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.85rem;
-}
-
-h1, .blog-num, .intro, .footer-learn{
-    font-weight: 700;
-}
-
 .logo-img{
     width: 2em;
     height: 2em;
@@ -68,6 +72,7 @@ h1, .blog-num, .intro, .footer-learn{
 
 ul{
     margin-left: auto;
+    margin-right: 3rem;
     text-decoration: none;
 }
 
@@ -75,12 +80,17 @@ li {
     list-style: none;
     font-size: 0.75rem;
     font-weight: 600;
-    padding-left: 50px;
     color: #090909;
+    width: 3.5rem;
 }
 
+.icon {
+    color: black;
+    font-size: 2rem;
+    margin-left: auto;
+}
 
-/*HERO SECTION*/
+/*HERO & BLOG SECTION*/
 .hero{
     grid-area: hero;
     display: grid;
@@ -107,9 +117,8 @@ li {
     align-self: end;
 }
 
-/*ABOUT ME*/
-.about-me{
-    grid-area: aboutMe;
+.blog-info-hero > .date{
+    color: white;
 }
 
 /*BLOG IMAGES*/
@@ -119,37 +128,6 @@ li {
 
 .blog-full{
     grid-area: fullPost;
-}
-
-
-.recent, .view-more, .view-less, .footer{
-    text-align: center
-}
-
-.recent{
-    grid-area: recentPost;
-}
-
-.view-more, .view-less{
-    grid-area: viewMore;
-}
-
-.heroimg, .view-more, .view-less, li, .blog-img, .blog-info-hero, .blog-box {
-    cursor: pointer;
-}
-
-.view-more:hover, .view-less:hover, li:hover {
-    color: darkgray;
-}
-
-.blog-img{
-    border-radius: 5px;
-    object-fit: cover;
-}
-
-.blog-box:hover{
-    border: 3px solid lightgrey;
-    border-radius: 6px;
 }
 
 /*BLOG INFO*/
@@ -187,6 +165,16 @@ li {
     color: #505050;
 }
 
+/*ABOUT ME*/
+.about-me{
+    grid-area: aboutMe;
+}
+
+.blog-img{
+    border-radius: 5px;
+    object-fit: cover;
+}
+
 /*FOOTER*/
 .footer{
     grid-area: footer;
@@ -214,8 +202,30 @@ p{
     padding-bottom: 1em;
 }
 
-.hidden {
-    display: none;
+/*GENERAL SETUP*/
+.recent, .view-more, .view-less, .footer{
+    text-align: center
+}
+
+.recent{
+    grid-area: recentPost;
+}
+
+.view-more, .view-less{
+    grid-area: viewMore;
+}
+
+.heroimg, .view-more, .view-less, li, .blog-img, .blog-info-hero, .blog-box, .icon {
+    cursor: pointer;
+}
+
+.view-more:hover, .view-less:hover, li:hover, .icon:hover {
+    color: darkgray;
+}
+
+.blog-box:hover{
+    border: 3px solid lightgrey;
+    border-radius: 6px;
 }
 
 /*MEDIA QUERIES*/
@@ -231,10 +241,12 @@ p{
         width: 100%;
     }
     h1{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        width: 16rem;
     }
     li{
         font-size: 1rem;
+        width: 10rem;
     }
     .blog-num, .intro{
         font-size: 2.25rem;
@@ -271,4 +283,14 @@ p{
         width: 20em;
         margin-top: 2px;
     }
+    .icon{
+        display: none;
+    }
+    #nav-list{
+        display: flex;
+    }
+}
+
+.hidden {
+    display: none;
 }
