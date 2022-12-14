@@ -1,0 +1,274 @@
+body {
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    box-sizing: border-box;
+}
+
+.journal{
+    width: 480px;
+    margin: 15px auto;
+    background-color: #FAFAFA;
+    display: grid;
+    grid-template-columns: 5% 1fr 5%;
+    grid-template-areas: 
+        "  navl header navr "
+        " hero hero hero "
+        " . heroblog . "
+        " . fullPost ."
+        " . aboutMe ."
+        " . recentPost ."
+        " . blogPosts . "
+        " . . . "
+        " . viewMore ."
+        " footer footer footer";
+        
+}
+
+/*NAV BAR*/
+.header{
+    height: 60px;
+    align-items: center;
+    grid-area: header;
+}
+
+.header, .background-l, .background-r{
+    background-color: white   
+}
+
+.header, .heroimg, .blog-img-full, .blog-img {
+    width: 100%;
+}
+
+.header, ul{
+    display: flex;
+}
+
+.background-l{
+    grid-column: navl;
+}
+
+.background-r{
+    grid-column: navr;
+}
+
+h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.85rem;
+}
+
+h1, .blog-num, .intro, .footer-learn{
+    font-weight: 700;
+}
+
+.logo-img{
+    width: 2em;
+    height: 2em;
+    padding-right: 0.25em
+}
+
+ul{
+    margin-left: auto;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding-left: 50px;
+    color: #090909;
+}
+
+
+/*HERO SECTION*/
+.hero{
+    grid-area: hero;
+    display: grid;
+    grid-template-columns: 5% 1fr 5%;
+    grid-template-areas: 
+        "heroimg heroimg heroimg";
+}
+
+.heroimg{
+    height: 350px;
+    margin-bottom: 2em;
+    grid-area: heroimg;
+}
+
+.heroimg, .blog-img{
+        object-fit: cover;
+}
+
+.blog-info-hero{
+    color: white;
+    padding-bottom: 1.25em;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+}
+
+/*ABOUT ME*/
+.about-me{
+    grid-area: aboutMe;
+}
+
+/*BLOG IMAGES*/
+.blogPosts{
+    grid-area: blogPosts;
+}
+
+.blog-full{
+    grid-area: fullPost;
+}
+
+
+.recent, .view-more, .view-less, .footer{
+    text-align: center
+}
+
+.recent{
+    grid-area: recentPost;
+}
+
+.view-more, .view-less{
+    grid-area: viewMore;
+}
+
+.heroimg, .view-more, .view-less, li, .blog-img, .blog-info-hero, .blog-box {
+    cursor: pointer;
+}
+
+.view-more:hover, .view-less:hover, li:hover {
+    color: darkgray;
+}
+
+.blog-img{
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.blog-box:hover{
+    border: 3px solid lightgrey;
+    border-radius: 6px;
+}
+
+/*BLOG INFO*/
+
+.blog-info{
+    grid-area: bloginfo;
+}
+
+/*BLOGS*/
+.blog-num, .intro, .blog-num-full{
+    margin-top: 0.5em; 
+    margin-bottom: 0.5em;
+    font-size: 2rem;
+}
+
+.blog-text, .blog-text-hero{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.date, .blog-text, .blog-text-hero, .date-full, .footer-learn, .blog-text-full{
+   font-weight: 400;
+   font-size: 1rem;
+}
+
+.date, .date-full {
+    color: #151515;
+}
+
+.blog-info-hero > .blog-text{
+    color: white;
+}
+
+.blog-text{
+    color: #505050;
+}
+
+/*FOOTER*/
+.footer{
+    grid-area: footer;
+    background-color: #202020;
+    color: #ececec;
+}
+
+.footer-learn{
+    margin-top: 2em;
+    margin-bottom: 0;
+}
+
+.footer-copy{
+    margin-top: 0.25em;
+    margin-bottom: 2em;
+}
+
+.profile-img{
+    border-radius: 50%;
+    width: 10em;
+    margin-top: 2em;
+}
+
+p{
+    padding-bottom: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+/*MEDIA QUERIES*/
+@media (min-width : 1085px){
+    .journal{
+        min-width: 1085px;  
+    }
+    .header{
+        display: flex;
+        height: 80px;
+    }
+    .header, .blogPosts{
+        width: 100%;
+    }
+    h1{
+        font-size: 1.5rem;
+    }
+    li{
+        font-size: 1rem;
+    }
+    .blog-num, .intro{
+        font-size: 2.25rem;
+    }
+    .blog-text-hero{
+        width: 650px;
+    }
+    .heroimg{
+        height: 490px;
+    }
+    .blogPosts{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center
+    }
+    .blog-text, .blog-num, .blog-img, .date{
+        width: 310px;
+    }
+    .date-full, .blog-text-full, .blog-num-full, .small-title-full, .paragraph {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+    .about-full{
+        display:flex;
+    }
+    .about-right{
+        padding-left: 2rem
+    }
+    .intro-about{
+        font-size: 2.25rem;
+        margin-bottom: 0
+    }
+    .profile-img{
+        width: 20em;
+        margin-top: 2px;
+    }
+}
